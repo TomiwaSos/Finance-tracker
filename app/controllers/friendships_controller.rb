@@ -6,8 +6,9 @@ class FriendshipsController < ApplicationController
 
     def search
         if params[:friend].present?
-            @friend = params[:friend]
-            if @friend
+            @friends = User.search(params[:friend])
+            @friends = current_user.except_current_user(@friends)
+            if @friends
                 respond_to do |format|
                     format.js { render partial: 'friendships/result' }
                 end
@@ -23,6 +24,18 @@ class FriendshipsController < ApplicationController
                 format.js { render partial: 'friendships/result' }
             end
         end
+    end
+
+    def create
+    
+    end
+
+    def destroy
+        friendship = current_user.friendships.where(friend_id: params[:id]).first
+        friendship.destroy 
+        flash[:notice] = "You are no longer friends"
+        redirect_to friendships_path,
+    
     end
 
 end

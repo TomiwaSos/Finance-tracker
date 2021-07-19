@@ -11,8 +11,8 @@
       <% @friendships.each do |friend|%>
         <tr>
           <td scope="row"><%= friend.email%></td>
-          <td><%= "#{friend.first_name} #{friend.last_name}"%></td>
-          <td><%= link_to "Stop Following", root_path(), method: :delete, data:{confirm: "Are you sure ?"}, class: "btn btn-xs btn-warning"%></td>
+          <td><%= friend.full_name%></td>
+          <td><%= link_to "Stop Following", friendship_path(friend), method: :delete, data:{confirm: "Are you sure ?"}, class: "btn btn-xs btn-warning"%></td>
         </tr>
       <%end%>
     </tbody>

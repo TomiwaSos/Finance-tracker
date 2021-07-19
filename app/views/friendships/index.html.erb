@@ -5,4 +5,24 @@
   <%= render "layouts/messages"%>
 </div>
 
+<div class ="search-area">
+  <h3> Search For a Friend</h3>
+  <%= form_tag search_friend_path,remote: true, method: :get do%>
+    <div class ="form-group row">
+      <div class = "col-sm-9 no-right-padding">
+        <%= text_field_tag :friend, params[:friend], placeholder: "Search for friend", autofocus: true, class:"form-control form-control-lg"%>
+      </div>
+      <div class = "col-sm-3 no-left-padding">
+        <%= button_tag type: :submit, class:"btn btn-success" do%>
+          <%= fa_icon "search 2x" %>
+        <%end%>
+      </div>
+    </div>
+  <% end%>
+</div>
+
+<div id="results">
+
+</div>
+
 <%= render 'list'%>
